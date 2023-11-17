@@ -26,6 +26,6 @@ export class NewProduct {
   @Column()
   price: number;
 
-  @Column()
+  @Column({ default: false })
   isLike: boolean;
 }
