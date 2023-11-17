@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { NewModule } from './new/new.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { NewProductModule } from './new-product/new-product.module';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv').config();
 
@@ -18,7 +18,7 @@ require('dotenv').config();
       entities: [],
       synchronize: true,
     }),
-    NewModule,
+    NewProductModule,
   ],
   controllers: [AppController],
   providers: [AppService],
