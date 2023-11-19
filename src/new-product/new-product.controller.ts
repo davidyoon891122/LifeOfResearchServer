@@ -13,6 +13,11 @@ export class NewProductController {
     return await this.newProductService.getAllProduct();
   }
 
+  @Get('/:id')
+  async getNewProductById(@Param('id') id: number): Promise<NewProduct> {
+    return await this.newProductService.getProductById(id);
+  }
+
   @Post()
   async createNewProduct(@Body() newProduct: CreateNewProductDto) {
     return await this.newProductService.createNewProduct(newProduct);

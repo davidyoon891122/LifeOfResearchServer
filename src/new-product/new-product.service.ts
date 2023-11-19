@@ -16,6 +16,10 @@ export class NewProductService {
     return await this.newProductRepository.find();
   }
 
+  async getProductById(id: number) {
+    return await this.newProductRepository.findOneBy({ id });
+  }
+
   async createNewProduct(
     newProduct: CreateNewProductDto,
   ): Promise<InsertResult> {
