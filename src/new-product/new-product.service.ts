@@ -52,6 +52,19 @@ export class NewProductService {
   }
 
   async updateNewProduct(id: number, updateData: UpdateNewProductDto) {
-    return await this.newProductRepository.update(id, updateData);
+    const result = await this.newProductRepository.update(id, updateData);
+
+    if (result.affected === 0) {
+      throw new NotFoundException(
+        `The product item is not existed on the database. Request Product ID: (${id})`,
+      );
+    }
+
+    const success = {
+      message: `Update Success. Product ID: ${id}`,
+      statusCode: 201,
+    };
+
+    return success;
   }
 }
