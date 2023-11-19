@@ -4,7 +4,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { InsertResult, Repository } from 'typeorm';
 import { CreateNewProductDto } from './dto/create-newProduct.dto';
 import { UpdateNewProductDto } from './dto/update-newProduct.dto';
-import { json } from 'stream/consumers';
 
 @Injectable()
 export class NewProductService {
