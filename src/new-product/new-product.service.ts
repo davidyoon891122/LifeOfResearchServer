@@ -1,9 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { NewProduct } from './entity/new-product.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { InsertResult, Repository } from 'typeorm';
 import { CreateNewProductDto } from './dto/create-newProduct.dto';
 import { UpdateNewProductDto } from './dto/update-newProduct.dto';
+import { json } from 'stream/consumers';
 
 @Injectable()
 export class NewProductService {
@@ -16,17 +17,41 @@ export class NewProductService {
     return await this.newProductRepository.find();
   }
 
-  async getProductById(id: number) {
-    return await this.newProductRepository.findOneBy({ id });
+  async getProductById(id: number): Promise<NewProduct> {
+    const result = await this.newProductRepository.findOneBy({ id });
+
+    if (!result) {
+      throw new NotFoundException(
+        `The product item is not existed on the database. Request Product ID: (${id})`,
+      );
+    }
+
+    return result;
   }
 
   async createNewProduct(
     newProduct: CreateNewProductDto,
   ): Promise<InsertResult> {
-    return this.newProductRepository.insert(newProduct);
+    return await this.newProductRepository.insert(newProduct);
+  }
+
+  async deleteNewProductById(id: number) {
+    const result = await this.newProductRepository.delete(id);
+    if (result.affected === 0) {
+      throw new NotFoundException(
+        `The product item is not existed on the database. Request Product ID: (${id})`,
+      );
+    }
+
+    const success = {
+      message: `Delete Success. Product ID: ${id}`,
+      statusCode: 200,
+    };
+
+    return success;
   }
 
   async updateNewProduct(id: number, updateData: UpdateNewProductDto) {
-    return this.newProductRepository.update(id, updateData);
+    return await this.newProductRepository.update(id, updateData);
   }
 }
