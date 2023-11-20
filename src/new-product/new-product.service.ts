@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { InsertResult, Repository } from 'typeorm';
 import { CreateNewProductDto } from './dto/create-newProduct.dto';
 import { UpdateNewProductDto } from './dto/update-newProduct.dto';
+import { type } from 'os';
 
 @Injectable()
 export class NewProductService {
@@ -13,7 +14,7 @@ export class NewProductService {
   ) {}
 
   async getAllProduct(): Promise<Product[]> {
-    return await this.newProductRepository.find();
+    return await this.newProductRepository.findBy({ type: 'NEW' });
   }
 
   async getProductById(id: number): Promise<Product> {
