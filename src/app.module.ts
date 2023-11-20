@@ -15,7 +15,7 @@ require('dotenv').config();
       rootPath: join(__dirname, '..', 'public/images'),
       serveRoot: '/resource',
       serveStaticOptions: {
-        extensions: ['jpeg'],
+        extensions: ['jpeg', 'png'],
       },
     }),
     TypeOrmModule.forRoot({
