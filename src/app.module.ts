@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { NewProductModule } from './new-product/new-product.module';
-import { NewProduct } from './new-product/entity/new-product.entity';
+import NewProduct from './new-product/entity/new-product.entity';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv').config();
 

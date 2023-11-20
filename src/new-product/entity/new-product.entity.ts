@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class NewProduct {
+export default class Product {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -25,6 +25,9 @@ export class NewProduct {
 
   @Column()
   price: number;
+
+  @Column()
+  type: string;
 
   @Column({ default: false })
   isLike: boolean;

@@ -1,13 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { NewProductService } from './new-product.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { NewProduct } from './entity/new-product.entity';
+import Product from './entity/new-product.entity';
 import { Repository } from 'typeorm';
-import { CreateNewProductDto } from './dto/create-newProduct.dto';
 
 describe('NewProductService', () => {
   let service: NewProductService;
-  const mockProduct: NewProduct = {
+  const mockProduct: Product = {
     id: 1,
     productId: '0001',
     name: 'AIR FORCE1',
@@ -16,6 +15,7 @@ describe('NewProductService', () => {
     brand: 'NIKE',
     description: 'This product is the famouse shose in the world',
     price: 120000,
+    type: 'NEW',
     isLike: false,
   };
 
@@ -33,7 +33,7 @@ describe('NewProductService', () => {
           },
         },
         {
-          provide: getRepositoryToken(NewProduct),
+          provide: getRepositoryToken(Product),
           useClass: Repository,
         },
       ],

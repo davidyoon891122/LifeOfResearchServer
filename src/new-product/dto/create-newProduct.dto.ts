@@ -22,6 +22,9 @@ export class CreateNewProductDto {
   @IsNumber()
   readonly price: number;
 
+  @IsString()
+  readonly type: string;
+
   @IsOptional()
   @IsBoolean()
   readonly isLike: boolean;

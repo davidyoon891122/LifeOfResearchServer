@@ -8,7 +8,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { NewProductService } from './new-product.service';
-import { NewProduct } from './entity/new-product.entity';
+import Product from './entity/new-product.entity';
 import { CreateNewProductDto } from './dto/create-newProduct.dto';
 import { UpdateNewProductDto } from './dto/update-newProduct.dto';
 
@@ -17,12 +17,12 @@ export class NewProductController {
   constructor(private readonly newProductService: NewProductService) {}
 
   @Get()
-  async getNewProducts(): Promise<NewProduct[]> {
+  async getNewProducts(): Promise<Product[]> {
     return await this.newProductService.getAllProduct();
   }
 
   @Get('/:id')
-  async getNewProductById(@Param('id') id: number): Promise<NewProduct> {
+  async getNewProductById(@Param('id') id: number): Promise<Product> {
     return await this.newProductService.getProductById(id);
   }
 
