@@ -11,13 +11,19 @@ require('dotenv').config();
 
 @Module({
   imports: [
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public/images'),
-      serveRoot: '/resource',
-      serveStaticOptions: {
-        extensions: ['jpeg', 'png'],
+    ServeStaticModule.forRoot(
+      {
+        rootPath: join(__dirname, '..', 'public/images'),
+        serveRoot: '/resource',
+        serveStaticOptions: {
+          extensions: ['jpeg', 'png'],
+        },
       },
-    }),
+      {
+        rootPath: join(__dirname, '..', 'public/views'),
+        serveRoot: '/upload',
+      },
+    ),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
