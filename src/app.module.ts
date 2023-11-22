@@ -6,6 +6,8 @@ import { NewProductModule } from './new-product/new-product.module';
 import Product from './new-product/entity/new-product.entity';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { AdminController } from './admin/admin.controller';
+import { AdminModule } from './admin/admin.module';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv').config();
 
@@ -35,8 +37,9 @@ require('dotenv').config();
       synchronize: true,
     }),
     NewProductModule,
+    AdminModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, AdminController],
   providers: [AppService],
 })
 export class AppModule {}
