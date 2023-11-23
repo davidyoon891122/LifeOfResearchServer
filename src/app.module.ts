@@ -6,8 +6,8 @@ import { NewProductModule } from './new-product/new-product.module';
 import Product from './new-product/entity/new-product.entity';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-import { AdminController } from './admin/admin.controller';
 import { AdminModule } from './admin/admin.module';
+import AdminUser from './admin/login/entity/admin-user.entity';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv').config();
 
@@ -33,13 +33,13 @@ require('dotenv').config();
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      entities: [Product],
+      entities: [Product, AdminUser],
       synchronize: true,
     }),
     NewProductModule,
     AdminModule,
   ],
-  controllers: [AppController, AdminController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
