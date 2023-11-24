@@ -4,16 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/main-style.css"
     <title>File Upload</title>
 </head>
 <body>
-    <h1>File Upload</h1>
+    <h1>Image Upload</h1>
     
     <form action="/upload" method="post" enctype="multipart/form-data">
-        <label for="file">Choose a file:</label>
+        <label for="file">Choose a image:</label>
         <input type="file" name="file" id="file" accept=".jpg, .jpeg, .png" required>
         <br/>
         <button type="submit">Upload</button>
+    </form>
+    <h1>Upload Result</h1>
+    <img src="{{ imageUrl }}" alt="Uploaded Image" style="width: 300px; heigh: 500px;">
+    <br>
+    <label for="imageUrl" name="imageUrl">{{ imageUrl }}</label>
+    
+    <h1>상품 등록</h1>
+    <form action="/admin/product" method="post">
+    <label for="productId">ProductID:</label>
+    <input type="text" id="productId" name="productId" required>
+    <br>
+    <label for="category">category:</label>
+    <input type="text" id="category" name="category" required>
+    <br>
+    <label for="imagePath">ProductID:</label>
+    <input type="text" id="imagePath" name="imagePath" value="{{ imageUrl }}">
+    <br>
+    <label for="brand">brand:</label>
+    <input type="text" id="brand" name="brand" required>
+    <br>
+    <label for="description">description:</label>
+    <input type="text" id="description" name="description" required>
+    <br>
+    <label for="price">price:</label>
+    <input type="text" id="price" name="price" required>
+    <br>
+    <button type="submit" value="regist">Regist</button>
     </form>
 </body>
 </html>

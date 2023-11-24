@@ -2,6 +2,7 @@ import {
   Controller,
   Get,
   Post,
+  Res,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -9,6 +10,7 @@ import { AppService } from './app.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { join } from 'path';
 import { diskStorage } from 'multer';
+import { Response } from 'express';
 
 @Controller()
 export class AppController {
@@ -30,8 +32,10 @@ export class AppController {
       }),
     }),
   )
-  uploadFile(@UploadedFile() file: Express.Multer.File) {
+  uploadFile(@Res() res: Response, @UploadedFile() file: Express.Multer.File) {
     console.log(file);
-    return join('localhost:3000/resource/', file.originalname);
+    res.render('main', {
+      imageUrl: join('resource/', file.originalname),
+    });
   }
 }
